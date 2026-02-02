@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VerbatimFx</title>
+    <link rel="stylesheet" href="css/studio.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#005555">
+</head>
+
+<body>
+
+    <div class="menu-bar">
+        <div class="menu-item">File
+            <div class="dropdown">
+                <div class="dropdown-item" id="menuOpen">Open Project Folder</div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item" style="visibility: hidden;" id="menuSaveTimeline">Save Project Arrangement
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item" onclick="window.close()">Exit</div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item" onclick="window.location.reload()">Reload</div>
+            </div>
+        </div>
+        <div class="menu-item">Edit
+            <div class="dropdown">
+                <div class="dropdown-item" style="visibility: hidden;"
+                    onclick="Logger.log('History features coming soon...')">Undo / Redo (TBD)
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item" id="menuRefresh" onclick="App.refreshSidebar()">Refresh Assets</div>
+            </div>
+        </div>
+        <div class="menu-item">Hardware
+            <div class="dropdown">
+                <div class="dropdown-item" id="menuRequestPermissions">Request Permissions</div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item" id="menuRefreshHardware">Rescan Devices</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <button class="btn btn-record" id="masterRecord">● Master Record</button>
+        <button class="btn" id="masterStop" disabled>■ Stop Recording</button>
+        <div style="flex: 1;"></div>
+        <div id="projectInfoDisplay" style="font-size: 11px; color: var(--text-dim);">No active project folder</div>
+    </div>
+
+    <div class="tab-container">
+        <div class="tab active" data-panel="monitor">Monitor / Waveform</div>
+        <div class="tab" data-panel="playback">Playback / Timeline</div>
+        <div class="tab" data-panel="devices">Devices / Configuration</div>
+    </div>
+
+    <div class="app-body">
+        <div class="sidebar">
+            <div class="sidebar-header">Recordings Sidebar</div>
+            <div class="asset-list" id="assetSidebar">
+                <!-- Draggable assets go here -->
+                <div style="padding: 20px; text-align: center; color: #aaa; font-size: 11px;">
+                    Assets will appear here after recording or opening a project.
+                </div>
+            </div>
+        </div>
+
+        <main class="main-view">
+            <!-- Panel: Monitor -->
+            <div class="panel active" id="panel-monitor">
+                <div class="monitor-viewport" id="monitorTracks">
+                    <div
+                        style="height: 100%; display: flex; align-items: center; justify-content: center; color: #444;">
+                        Select hardware in the Devices tab to see monitor tracks.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel: Playback -->
+            <div class="panel" id="panel-playback">
+                <div class="playback-header">
+                    <button class="btn btn-primary" id="timelinePlay">▶ Play Arrangement</button>
+                    <button class="btn" id="timelineStop">■ Stop</button>
+                    <div style="width: 1px; height: 20px; background: var(--border);"></div>
+                    <button class="btn" id="timelineExport">📁 Export</button>
+                    <div style="flex: 1;"></div>
+                    <div id="playbackStatus" style="font-size: 11px; color: var(--text-dim) ;">00:00.0</div>
+                </div>
+                <div class="timeline-container" id="timelineContainer">
+                    <div class="track-controls-sidebar" id="timelineSidebar">
+                        <div class="timeline-ruler" style="height:30px; background:#ddd; border-bottom:1px solid #999;">
+                        </div>
+                        <!-- Track control blocks go here -->
+                    </div>
+                    <div style="flex: 1; overflow-x: auto; position: relative;">
+                        <div class="timeline-ruler" id="timelineRuler"></div>
+                        <div class="tracks-area" id="timelineTracksArea">
+                            <!-- Drop targets for clips appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel: Devices -->
+            <div class="panel" id="panel-devices">
+                <div class="device-grid" id="deviceGrid">
+                    <div style="padding: 30px; text-align: center; color: #666;">
+                        Scanning for hardware... Please click "Request Permissions" if names are hidden.
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="status-bar">
+        <div id="statusLeft">Status: Idle</div>
+        <div id="statusRight">VerbatimFx Studio v1.0</div>
+    </div>
+
+    <!-- JS Modules -->
+    <script src="js/storage.js"></script>
+    <script src="js/audio-manager.js"></script>
+    <script src="js/midi-recorder.js"></script>
+    <script src="js/midi-synth.js"></script>
+    <script src="js/visualizers.js"></script>
+    <script src="js/timeline.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registered.', reg))
+                    .catch(err => console.log('Service Worker registration failed.', err));
+            });
+        }
+    </script>
+</body>
+
+</html>

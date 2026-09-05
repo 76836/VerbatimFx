@@ -1,11 +1,12 @@
 {
-  "name": "Verbatim Fx",
+  "name": "VerbatimFx",
   "short_name": "VbFx",
+  "version": "1.2.0",
   "description": "Record your music effects verbatim.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#005555",
+  "background_color": "#020817",
+  "theme_color": "#020817",
   "icons": [
     {
       "src": "icon-512.png",

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'VerbatimFx-v1.2.0';
+const CACHE_NAME = 'VerbatimFx-v1.3.0';
 const ASSETS = [
     './',
     './index.html',
@@ -9,6 +9,8 @@ const ASSETS = [
     './js/ux.js',
     './js/stability.js',
     './js/splash.js',
+    './js/settings-ui.js',
+    './js/AIM-handTracking.js',
     './js/audio-manager.js',
     './js/midi-synth.js',
     './js/midi-recorder.js',

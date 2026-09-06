@@ -284,8 +284,22 @@
                     showBlocking({
                         title: 'Project selection failed',
                         detail: e.message || String(e)
-                    }, [{ label: 'Try Again', primary: true, onclick: () => startupGate() }]);
+                    }, [
+                        { label: 'Try Again', primary: true, onclick: () => startupGate() },
+                        { label: 'Continue Anyway', onclick: () => {
+                            window.VerbatimFxStartup.isBlocked = false;
+                            $('preflightDialog')?.classList.remove('open');
+                            window.dispatchEvent(new Event('verbatimfx-startup-complete'));
+                        }}
+                    ]);
                 }
+            }
+        }, {
+            label: 'Continue Anyway',
+            onclick: () => {
+                window.VerbatimFxStartup.isBlocked = false;
+                $('preflightDialog')?.classList.remove('open');
+                window.dispatchEvent(new Event('verbatimfx-startup-complete'));
             }
         }]);
         return false;

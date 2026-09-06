@@ -20,7 +20,7 @@
             <div class="splash-status">Loading…</div>
         </div>
     </div>
-    <svg class="ice-refraction-filter" aria-hidden="true"><defs><filter id="ice-refraction"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" result="noise" /><feDisplacementMap in="SourceGraphic" in2="noise" scale="75" xChannelSelector="R" yChannelSelector="G" /></filter></defs></svg>
+    <svg class="ice-refraction-filter" aria-hidden="true"><defs><filter id="ice-refraction" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.015 0.02" numOctaves="3" seed="2" result="noise"/><feGaussianBlur in="noise" stdDeviation="0.6" result="softNoise"/><feDisplacementMap in="SourceGraphic" in2="softNoise" scale="88" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>
     <div class="menu-bar">
         <div class="menu-item">File<div class="dropdown"><div class="dropdown-item" id="menuOpen">Open Project Folder</div><div class="dropdown-divider"></div><div class="dropdown-item" style="visibility:hidden" id="menuSaveTimeline">Save Project Arrangement</div><div class="dropdown-divider"></div><div class="dropdown-item" onclick="window.close()">Exit</div><div class="dropdown-divider"></div><div class="dropdown-item" onclick="window.location.reload()">Reload</div></div></div>
         <div class="menu-item">Edit<div class="dropdown"><div class="dropdown-item" style="visibility:hidden" onclick="Logger.log('History features coming soon...')">Undo / Redo (TBD)</div><div class="dropdown-divider"></div><div class="dropdown-item" id="menuRefresh" onclick="App.refreshSidebar()">Refresh Assets</div></div></div>

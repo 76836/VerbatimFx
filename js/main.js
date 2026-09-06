@@ -81,6 +81,12 @@ const App = {
             window.Timeline.init();
 
             Logger.log("VerbatimFx is Ready.");
+            // Signal splash / first-run UX that the shell is interactive.
+            try {
+                window.dispatchEvent(new CustomEvent('verbatimfx-ready', {
+                    detail: { version: '1.2.0', at: Date.now() }
+                }));
+            } catch (_) {}
 
             // We do NOT await AudioManager.init here if it blocks.
             // But we must wait for it to create the context before making the Synth.

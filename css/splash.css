@@ -33,6 +33,7 @@
 }
 .splash-title { margin:0; font-size:26px; font-weight:600; letter-spacing:.08em; }
 .splash-version { margin:-8px 0 0; color:#b6c7e6; font-size:12px; letter-spacing:.12em; }
+.splash-status { margin:4px 0 0; color:#8fa3c4; font-size:11px; letter-spacing:.06em; min-height:1em; }
 .splash-loader { width:150px; height:3px; overflow:hidden; border-radius:99px; background:rgba(148,163,184,.16); }
 .splash-loader::after { content:""; display:block; width:45%; height:100%; border-radius:inherit; background:linear-gradient(90deg,#7dd3fc,#a78bfa); animation:splashLoad 1.1s ease-in-out infinite; }
 @keyframes splashPulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.035); } }
